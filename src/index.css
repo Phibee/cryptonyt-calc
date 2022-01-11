@@ -7,11 +7,13 @@ html, body, #root{
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.030em;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,28 +26,36 @@ code {
 }
 
 body {
-  /* background: url('./assets/images/bg.jpg') no-repeat; */
-  /* background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=100'); */
-  /* backdrop-filter: blur(16px); */
-  /* background-size: cover; */
-
-  background: #4e54c8;  
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+  background-image: linear-gradient(to left bottom, #ff7bc6, #f164cb, #de4fd4, #c43fdf, #9f35ec, #8740f3, #6949fa, #3d51ff, #3f61ff, #4670ff, #517efe, #5f8bfb);
   width: 100%;
   height:100vh;
-  
+  letter-spacing: 0.003em;
 }
 
 .glass-container {
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  min-width: 850px;
+  width: 850px;
   height: 540px;
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: row;
+}
+
+.glass-col{
+  flex-grow: 1;
+  padding: 0 15px 15px;
+  flex-basis: 50%;
+}
+
+h1 {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
 }
 
 
@@ -162,4 +172,46 @@ body {
       border-radius: 50%;
   }
 
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.col {
+  flex-grow: 1;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-shrink{
+  flex-shrink: 0;
+}
+
+.h-full{
+  height: 100%;
+}
+
+.align-bottom {
+  align-items: flex-end;
+}
+
+.align-right {
+  justify-items: flex-end;
+}
+
+.text-right {
+  text-align: right;
 }
