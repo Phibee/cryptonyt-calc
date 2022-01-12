@@ -3,9 +3,9 @@ import './App.css';
 import BottomInfo from './components/BottomInfo';
 import Button from './components/Button';
 import CurrencyInput from './components/CurrrencyInput';
-import Input from './components/Input';
 import RangeSlider from './components/RangeSlider';
 import Switch from './components/Switch';
+const WebFont = require('webfontloader');
 
 interface CryptoPrice {
 	winPrice: number;
@@ -15,6 +15,12 @@ interface CryptoPrice {
 }
 
 function App() {
+	WebFont.load({
+		google: {
+			families: ['Poppins:300,400,500,700', 'sans-serif'],
+		},
+	});
+
 	// Declarations
 	const [entryType, setEntryType] = useState(0);
 	const [entryPrice, setEntryPrice] = useState(0);
@@ -97,7 +103,10 @@ function App() {
 				</ul>
 
 				{/* Start of the Form Glass */}
-				<h1>Crypto Calculator</h1>
+				<h1>
+					Crypto Calculator{' '}
+					<span style={{ paddingLeft: 10, fontSize: 12 }}>#Malasakit</span>
+				</h1>
 				<div className="glass-container">
 					{/* column on left */}
 					<div className="glass-col">
