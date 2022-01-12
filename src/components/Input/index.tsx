@@ -1,4 +1,5 @@
 import React from 'react';
+import { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 const InputWrapper = styled.div`
@@ -26,7 +27,7 @@ const LabelStyled = styled.label`
 	font-size: 14px;
 `;
 
-export interface IInputProps {
+export interface IInputProps extends HTMLAttributes<HTMLInputElement> {
 	label: string;
 }
 

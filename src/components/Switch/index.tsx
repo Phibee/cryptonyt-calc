@@ -52,21 +52,26 @@ const StyledList = styled.ul`
 
 type SwitchColumn = {
 	label: string;
-	onClick?: () => void;
 };
 
 export interface ISwitchProps {
 	columns: SwitchColumn[];
+	onSelectionChanged?: (e: number) => void;
 }
 
 const Switch: React.FC<ISwitchProps> = ({ columns, ...props }) => {
 	const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
 
+	const onChanged = (e: number) => {
+		setSelectedIndex(e);
+		props.onSelectionChanged?.(e);
+	};
+
 	return (
 		<StyledList>
 			{columns.map((c, i) => (
 				<li key={i} className={`${selectedIndex === i ? 'selected' : ''}`}>
-					<a onClick={() => setSelectedIndex(i)}>{c.label}</a>
+					<a onClick={() => onChanged(i)}>{c.label}</a>
 				</li>
 			))}
 			<li className="slider"></li>

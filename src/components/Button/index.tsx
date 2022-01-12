@@ -25,10 +25,11 @@ const StyledButton = styled.a`
 
 export interface IButtonProps {
 	label: string;
+	onClick?: () => void;
 }
 
 const Button: React.FC<IButtonProps> = ({ label, ...props }) => {
-	return <StyledButton>{label}</StyledButton>;
+	return <StyledButton onClick={props.onClick}>{label}</StyledButton>;
 };
 
 export default Button;

@@ -45,7 +45,7 @@ const BottomInfo: React.FC<IBottomInfoProps> = ({
 			<LabelStyled>{label}</LabelStyled>
 			<AmountStyled>{formatNumber(amount)}</AmountStyled>
 			<PercentageStyled percentageType={percentageType}>
-				{percentage.toFixed(2)}
+				{percentage.toFixed(2)}%
 			</PercentageStyled>
 		</div>
 	);
