@@ -1,5 +1,15 @@
-html, body, #root{
+body {
+  height: 100%;
+}
+
+html, body {
+  overflow: hidden;
+}
+
+html, #root{
   height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 #root {

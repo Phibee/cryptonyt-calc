@@ -36,7 +36,6 @@ const StyledList = styled.ul`
 	.slider {
 		position: absolute;
 		display: flex;
-		background-color: black;
 		height: 85%;
 		width: 50%;
 		z-index: 0;
@@ -47,6 +46,14 @@ const StyledList = styled.ul`
 
 	li:not(.slider):nth-child(2).selected ~ .slider {
 		transform: translateX(97%) scale(0.8) translateY(-2px);
+	}
+
+	li:not(.slider):nth-child(1).selected ~ .slider {
+		background-color: #47b723;
+	}
+
+	li:not(.slider):nth-child(2).selected ~ .slider {
+		background-color: #e51919;
 	}
 `;
 

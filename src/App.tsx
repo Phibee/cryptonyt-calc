@@ -14,7 +14,7 @@ interface CryptoPrice {
 
 function App() {
 	// Declarations
-	const [entryType, setEntryType] = useState(1);
+	const [entryType, setEntryType] = useState(0);
 	const [entryPrice, setEntryPrice] = useState(0);
 	const [takeProfit, setTakeProfit] = useState(0);
 	const [stopPrice, setStopPrice] = useState(0);
@@ -42,7 +42,7 @@ function App() {
 			winPercent: tpPercentWithLeverage,
 			lossPercent: slPercentWithLeverage,
 		});
-	}, []);
+	}, [takeProfit, entryPrice, stopPrice, betAmount, leverage]);
 
 	/**
 	 * Calculates Sell (Short) Position
@@ -63,7 +63,11 @@ function App() {
 			winPercent: tpPercentWithLeverage,
 			lossPercent: slPercentWithLeverage,
 		});
-	}, []);
+	}, [takeProfit, entryPrice, stopPrice, betAmount, leverage]);
+
+	const handleOnClick = React.useCallback(() => {
+		entryType === 0 ? calculateBuy() : calculateSell();
+	}, [entryType, takeProfit, entryPrice, stopPrice, betAmount, leverage]);
 
 	return (
 		<>
@@ -155,12 +159,7 @@ function App() {
 
 							<div className="col flex-shrink flex-row align-bottom">
 								<div className="col flex-grow text-right">
-									<Button
-										label="Calculate"
-										onClick={() =>
-											entryType === 0 ? calculateBuy() : calculateSell()
-										}
-									/>
+									<Button label="Calculate" onClick={handleOnClick} />
 								</div>
 							</div>
 						</div>

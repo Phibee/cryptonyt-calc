@@ -35,7 +35,7 @@ const Input: React.FC<IInputProps> = ({ label, ...props }) => {
 	return (
 		<InputWrapper>
 			<LabelStyled>{label}</LabelStyled>
-			<InputStyled type="text" />
+			<InputStyled {...props} type="text" />
 		</InputWrapper>
 	);
 };
