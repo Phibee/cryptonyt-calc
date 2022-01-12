@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import './App.css';
 import BottomInfo from './components/BottomInfo';
 import Button from './components/Button';
+import CurrencyInput from './components/CurrrencyInput';
 import Input from './components/Input';
+import RangeSlider from './components/RangeSlider';
 import Switch from './components/Switch';
 
 interface CryptoPrice {
@@ -37,10 +39,10 @@ function App() {
 		const lossPrice = (slPercentWithLeverage / 100) * betAmount;
 
 		setComputedPrice({
-			winPrice,
-			lossPrice,
-			winPercent: tpPercentWithLeverage,
-			lossPercent: slPercentWithLeverage,
+			winPrice: !isNaN(winPrice) ? winPrice : 0,
+			lossPrice: !isNaN(lossPrice) ? lossPrice : 0,
+			winPercent: !isNaN(winPrice) ? tpPercentWithLeverage : 0,
+			lossPercent: !isNaN(lossPrice) ? slPercentWithLeverage : 0,
 		});
 	}, [takeProfit, entryPrice, stopPrice, betAmount, leverage]);
 
@@ -58,16 +60,24 @@ function App() {
 		const lossPrice = (slPercentWithLeverage / 100) * betAmount;
 
 		setComputedPrice({
-			winPrice,
-			lossPrice,
-			winPercent: tpPercentWithLeverage,
-			lossPercent: slPercentWithLeverage,
+			winPrice: !isNaN(winPrice) ? winPrice : 0,
+			lossPrice: !isNaN(lossPrice) ? lossPrice : 0,
+			winPercent: !isNaN(winPrice) ? tpPercentWithLeverage : 0,
+			lossPercent: !isNaN(lossPrice) ? slPercentWithLeverage : 0,
 		});
 	}, [takeProfit, entryPrice, stopPrice, betAmount, leverage]);
 
 	const handleOnClick = React.useCallback(() => {
 		entryType === 0 ? calculateBuy() : calculateSell();
 	}, [entryType, takeProfit, entryPrice, stopPrice, betAmount, leverage]);
+
+	const range = React.useMemo(
+		() => [
+			{ value: 1, step: 1 }, // acts as min value
+			{ value: 50 }, // acts as max value
+		],
+		[]
+	);
 
 	return (
 		<>
@@ -93,23 +103,23 @@ function App() {
 					<div className="glass-col">
 						<div className="flex-col h-full">
 							<div className="col flex-grow">
-								<Input
+								<CurrencyInput
 									label="Entry Price"
-									onChange={(e) =>
-										setEntryPrice(parseFloat(e.currentTarget.value))
-									}
+									digits={4}
+									withComma={false}
+									onValueChanged={(e) => setEntryPrice(e)}
 								/>
-								<Input
+								<CurrencyInput
 									label="Take Profit Price"
-									onChange={(e) =>
-										setTakeProfit(parseFloat(e.currentTarget.value))
-									}
+									digits={4}
+									withComma={false}
+									onValueChanged={(e) => setTakeProfit(e)}
 								/>
-								<Input
+								<CurrencyInput
 									label="Stop Loss Price"
-									onChange={(e) =>
-										setStopPrice(parseFloat(e.currentTarget.value))
-									}
+									digits={4}
+									withComma={false}
+									onValueChanged={(e) => setStopPrice(e)}
 								/>
 							</div>
 
@@ -143,17 +153,17 @@ function App() {
 									columns={[{ label: 'Buy' }, { label: 'Sell' }]}
 									onSelectionChanged={(e) => setEntryType(e)}
 								/>
-								<Input
+								<CurrencyInput
 									label="Amount (USDT)"
-									onChange={(e) =>
-										setBetAmount(parseFloat(e.currentTarget.value))
-									}
+									digits={4}
+									onValueChanged={(e) => setBetAmount(e)}
 								/>
-								<Input
+
+								<RangeSlider
+									range={range}
 									label="Leverage"
-									onChange={(e) =>
-										setLeverage(parseFloat(e.currentTarget.value))
-									}
+									concatenatedString="x"
+									onChange={(value) => setLeverage(value)}
 								/>
 							</div>
 

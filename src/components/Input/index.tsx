@@ -28,16 +28,20 @@ const LabelStyled = styled.label`
 `;
 
 export interface IInputProps extends HTMLAttributes<HTMLInputElement> {
+	name?: string;
 	label: string;
+	value?: any;
 }
 
-const Input: React.FC<IInputProps> = ({ label, ...props }) => {
-	return (
-		<InputWrapper>
-			<LabelStyled>{label}</LabelStyled>
-			<InputStyled {...props} type="text" />
-		</InputWrapper>
-	);
-};
+const Input = React.forwardRef<HTMLInputElement, IInputProps>(
+	({ label, ...props }, ref) => {
+		return (
+			<InputWrapper>
+				<LabelStyled>{label}</LabelStyled>
+				<InputStyled {...props} ref={ref} type="text" />
+			</InputWrapper>
+		);
+	}
+);
 
 export default Input;
