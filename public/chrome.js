@@ -1,7 +1,10 @@
-chrome.browserAction.onClicked.addListener(function () {
-	var queryStr = '?tabId=';
-	var loaderURL = chrome.extension.getURL('/index.html') + queryStr;
-	chrome.browserAction.onClicked.addListener(function (tab) {
-		chrome.tabs.create({ url: loaderURL + tab.id });
-	});
+
+async function getCurrentTab() {
+    let queryOptions = { active: true, currentWindow: true };
+    let [tab] = await chrome.tabs.query(queryOptions);
+    return tab;
+}
+  
+chrome.action.onClicked.addListener(async function () {
+    chrome.tabs.create({ url: chrome.runtime.getURL("index.html") });
 });
